@@ -6,36 +6,10 @@ package pb;
 message GetHealthCheckRequest {
 }
 
-message UserRegistrationRequest{
-	string username = 1;
-	string email = 2;
-	string bio = 3;
-	string image = 4;
-	string password = 5;
-}
-
-message User {
-	uint32 id =1;
-	string username = 2;
-	string email = 3;
-	string bio = 4;
-	string image = 5;
-	string passwordHash =6;
-}
-
 // Health status of services.
 message GetHealthCheckResponse {
 	// The status of the relevant sub services.
 	string status = 1;
-	// An exception if an error occurred during processing request.
-	// Exception exception = 2;
 }
 
-message UserRegistrationResponse {
-	string username = 1;
-	string email = 2;
-	string bio = 3;
-	string image = 4;
-	string password = 5;	
-	string token = 6;
-}
+

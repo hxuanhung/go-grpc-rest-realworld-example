@@ -7,12 +7,12 @@ import "google/api/annotations.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 
 
-service Service {
-    option (grpc.gateway.protoc_gen_swagger.options.openapiv2_tag) = {
+service Greeter {
+  option (grpc.gateway.protoc_gen_swagger.options.openapiv2_tag) = {
 		description: "Service description -- which should not be used in place of the documentation comment!"
     };
     
-    // Check the health of the acre processor. This is used by load balancers to check end-to-end service health. Not yet implemented.
+   // Check the health of the acre processor. This is used by load balancers to check end-to-end service health. Not yet implemented.
 	rpc HealthCheck(pb.GetHealthCheckRequest) returns (pb.GetHealthCheckResponse) {
 		option (google.api.http) = {
 			get: "/v1/health_check"
@@ -20,14 +20,5 @@ service Service {
 		option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
 			tags: "Service"
 		};
-    }
-
-    rpc UserRegistration(pb.UserRegistrationRequest) returns (pb.UserRegistrationResponse) {
-        option (google.api.http) = {
-			get: "/v1/users"
-		};
-		option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
-			tags: "User"
-		}; 
-    }
+  }
 }

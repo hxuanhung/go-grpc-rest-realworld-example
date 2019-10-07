@@ -31,54 +31,6 @@
           "Service"
         ]
       }
-    },
-    "/v1/users": {
-      "get": {
-        "operationId": "UserRegistration",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/pbUserRegistrationResponse"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "username",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "bio",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "image",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "query",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "tags": [
-          "User"
-        ]
-      }
     }
   },
   "definitions": {
@@ -91,29 +43,6 @@
         }
       },
       "description": "Health status of services."
-    },
-    "pbUserRegistrationResponse": {
-      "type": "object",
-      "properties": {
-        "username": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "bio": {
-          "type": "string"
-        },
-        "image": {
-          "type": "string"
-        },
-        "password": {
-          "type": "string"
-        },
-        "token": {
-          "type": "string"
-        }
-      }
     }
   }
 }
