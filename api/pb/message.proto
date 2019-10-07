@@ -12,4 +12,17 @@ message GetHealthCheckResponse {
 	string status = 1;
 }
 
+message User {
+	string email = 1;
+	string passwordHash = 2;
+}
 
+message UserLoginRequest {
+	string email = 1;
+	string password = 2;
+}
+
+message UserLoginResponse {
+	string email = 1;
+	string token = 2;
+}

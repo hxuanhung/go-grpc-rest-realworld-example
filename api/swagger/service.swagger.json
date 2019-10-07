@@ -31,6 +31,22 @@
           "Service"
         ]
       }
+    },
+    "/v1/user/login": {
+      "post": {
+        "operationId": "UserLogin",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/pbUserLoginResponse"
+            }
+          }
+        },
+        "tags": [
+          "User"
+        ]
+      }
     }
   },
   "definitions": {
@@ -43,6 +59,17 @@
         }
       },
       "description": "Health status of services."
+    },
+    "pbUserLoginResponse": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
     }
   }
 }

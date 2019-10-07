@@ -21,4 +21,12 @@ service Acre {
 			tags: "Service"
 		};
   }
+	rpc UserLogin(pb.UserLoginRequest) returns (pb.UserLoginResponse) {
+		option (google.api.http) = {
+			post: "/v1/user/login"
+		};
+		option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
+			tags: "User"
+		};
+  }
 }
