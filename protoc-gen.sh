@@ -14,6 +14,7 @@ protoc -I/usr/local/include -I. \
   --go_out=plugins=grpc:. \
   api/srv/service.proto 
 
+# grpc-gateway
 protoc -I/usr/local/include -I. \
   -I$GOPATH/src \
   -I$GOPATH/src/github.com/hxuanhung/go-grpc-rest-realworld-example \
@@ -21,6 +22,7 @@ protoc -I/usr/local/include -I. \
   --grpc-gateway_out=logtostderr=true:. \
   api/srv/service.proto 
 
+# swagger
 protoc -I/usr/local/include -I. \
   -I$GOPATH/src \
   -I$GOPATH/src/github.com/hxuanhung/go-grpc-rest-realworld-example \
