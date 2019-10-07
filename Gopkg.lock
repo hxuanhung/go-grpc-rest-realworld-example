@@ -165,7 +165,7 @@
   revision = "c459b9ce5143dd819763d9329ff92a8e35e61bd9"
 
 [[projects]]
-  digest = "1:6cd77d0b616d2dcebd363dfecba593f27b0151fc82cdb5fbfb96c5a7cfbc95b5"
+  digest = "1:7f3e50e60d797f4c3773780a5edd9666bb23c2aba6b41a0cae00afd567b84534"
   name = "google.golang.org/grpc"
   packages = [
     ".",
@@ -201,6 +201,7 @@
     "stats",
     "status",
     "tap",
+    "testdata",
   ]
   pruneopts = "UT"
   revision = "f6d0f9ee430895e87ef1ceb5ac8f39725bafceef"
@@ -229,6 +230,7 @@
     "github.com/golang/protobuf/ptypes/struct",
     "github.com/grpc-ecosystem/go-grpc-middleware",
     "github.com/grpc-ecosystem/go-grpc-middleware/logging/zap",
+    "github.com/grpc-ecosystem/go-grpc-middleware/tags",
     "github.com/grpc-ecosystem/grpc-gateway/codegenerator",
     "github.com/grpc-ecosystem/grpc-gateway/internal",
     "github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway/descriptor",
@@ -243,8 +245,10 @@
     "google.golang.org/genproto/googleapis/api/annotations",
     "google.golang.org/grpc",
     "google.golang.org/grpc/codes",
+    "google.golang.org/grpc/credentials",
     "google.golang.org/grpc/grpclog",
     "google.golang.org/grpc/status",
+    "google.golang.org/grpc/testdata",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
