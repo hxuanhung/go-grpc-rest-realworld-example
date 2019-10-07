@@ -7,10 +7,10 @@ import (
 
 	"github.com/golang/glog"
 
-	"github.com/hxuanhung/go-grpc-rest-realworld-example/api/pb"
 	"github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/logger"
 	grpc "github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/protocol/grpc"
 	rest "github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/protocol/rest"
+	"github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/service"
 )
 
 var (
@@ -23,14 +23,6 @@ var (
 	logLevel      = flag.Int("logLevel", -1, "Global log level")
 	logTimeFormat = flag.String("logTimeFormat", "2006-01-02T15:04:05.999999999Z07:00", "Print time format for logger e.g. 2006-01-02T15:04:05Z07:00")
 )
-
-type server struct{}
-
-// SayHello implements helloworld.GreeterServer
-func (s *server) HealthCheck(ctx context.Context, in *pb.GetHealthCheckRequest) (*pb.GetHealthCheckResponse, error) {
-	// log.Printf("Received: %v", in.GetName())
-	return &pb.GetHealthCheckResponse{Status: "Good!"}, nil
-}
 
 func main() {
 	ctx := context.Background()
@@ -45,7 +37,7 @@ func main() {
 
 	// Goroutines: A goroutine is a lightweight thread managed by the Go runtime.
 	go func() {
-		grpc.RunServer(ctx, &server{}, *port)
+		grpc.RunServer(ctx, &service.Server{}, *port)
 	}()
 
 	if err := rest.RunServer(ctx, *httpPort, *port); err != nil {

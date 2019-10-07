@@ -12,7 +12,8 @@ import (
 	"google.golang.org/grpc"
 )
 
-func RunServer(ctx context.Context, server srv.GreeterServer, port string) {
+// RunServer runs gRPC service to publish service
+func RunServer(ctx context.Context, server srv.AcreServer, port string) {
 	lis, err := net.Listen("tcp", fmt.Sprintf("localhost:%d", 10000))
 	if err != nil {
 		logger.Log.Fatal("failed to listen", zap.String("reason", err.Error()))
@@ -23,7 +24,7 @@ func RunServer(ctx context.Context, server srv.GreeterServer, port string) {
 	opts = middleware.AddLogging(logger.Log, opts)
 
 	grpcServer := grpc.NewServer(opts...)
-	srv.RegisterGreeterServer(grpcServer, server)
+	srv.RegisterAcreServer(grpcServer, server)
 
 	logger.Log.Info("starting gRPC server...")
 	grpcServer.Serve(lis)

@@ -13,6 +13,7 @@ import (
 	middleware "github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/protocol/rest/middleware"
 )
 
+// RunServer runs HTTP/REST gateway
 func RunServer(ctx context.Context, httpPort, grpcPort string) error {
 	ctx, cancel := context.WithCancel(ctx)
 	defer cancel()
@@ -21,7 +22,7 @@ func RunServer(ctx context.Context, httpPort, grpcPort string) error {
 
 	opts := []grpc.DialOption{grpc.WithInsecure()}
 
-	if err := srv.RegisterGreeterHandlerFromEndpoint(ctx, mux, grpcPort, opts); err != nil {
+	if err := srv.RegisterAcreHandlerFromEndpoint(ctx, mux, grpcPort, opts); err != nil {
 		logger.Log.Fatal("failed to start HTTP gateway", zap.String("reason", err.Error()))
 	}
 	srv := &http.Server{

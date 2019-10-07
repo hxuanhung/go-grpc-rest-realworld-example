@@ -7,7 +7,7 @@ import "google/api/annotations.proto";
 import "protoc-gen-swagger/options/annotations.proto";
 
 
-service Greeter {
+service Acre {
   option (grpc.gateway.protoc_gen_swagger.options.openapiv2_tag) = {
 		description: "Service description -- which should not be used in place of the documentation comment!"
     };
