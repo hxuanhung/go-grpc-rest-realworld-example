@@ -32,7 +32,7 @@
         ]
       }
     },
-    "/v1/user/login": {
+    "/v1/users/login": {
       "post": {
         "operationId": "UserLogin",
         "responses": {
@@ -43,6 +43,16 @@
             }
           }
         },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/pbUserLoginRequest"
+            }
+          }
+        ],
         "tags": [
           "User"
         ]
@@ -59,6 +69,25 @@
         }
       },
       "description": "Health status of services."
+    },
+    "pbUserLoginRequest": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/pbUserLoginRequestUser"
+        }
+      }
+    },
+    "pbUserLoginRequestUser": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
     },
     "pbUserLoginResponse": {
       "type": "object",

@@ -23,7 +23,8 @@ service Acre {
   }
 	rpc UserLogin(pb.UserLoginRequest) returns (pb.UserLoginResponse) {
 		option (google.api.http) = {
-			post: "/v1/user/login"
+			post: "/v1/users/login"
+			body: "*"
 		};
 		option (grpc.gateway.protoc_gen_swagger.options.openapiv2_operation) = {
 			tags: "User"
