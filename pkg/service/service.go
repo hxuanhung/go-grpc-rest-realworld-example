@@ -44,17 +44,10 @@ func (s *Server) LoadUsers(filePath string) {
 			logger.Log.Fatal("Failed to load default features", zap.String("reason", err.Error()))
 		}
 	} else {
-		data = exampleData
+		logger.Log.Fatal("Failed to load default users: DB file is empty")
 	}
 	logger.Log.Debug("DB", zap.ByteString("users", data))
 	if err := json.Unmarshal(data, &s.savedUsers); err != nil {
 		logger.Log.Fatal("Failed to load default users: %v", zap.String("reason", err.Error()))
 	}
 }
-
-// exampleData is a copy of testdata/user_db.json. It's to avoid
-// specifying file path with `go run`.
-var exampleData = []byte(`[{
-	"email": "test@gmail.com",
-    "password": "12345678"
-}]`)

@@ -1,6 +1,6 @@
 [
   {
-    "username": "hung",
-    "passwordHash": "123"
+    "email": "test@gmail.com",
+    "password": "12345678"
   }
 ]
