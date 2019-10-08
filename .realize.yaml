@@ -1,0 +1,26 @@
+settings:
+  legacy:
+    force: false
+    interval: 0s
+schema:
+  - name: go-grpc-rest-realworld-example
+    path: /Users/hunghoang/go/src/github.com/hxuanhung/go-grpc-rest-realworld-example
+    commands:
+      install:
+        status: true
+      run:
+        status: true
+    watcher:
+      extensions:
+        - go
+        - proto
+      paths:
+        - /
+      ignored_paths:
+        - .git
+        - .realize
+        - vendor
+      scripts:
+        - type: before
+          command: ./protoc-gen.sh // Before change
+          output: true
