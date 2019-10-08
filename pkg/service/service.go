@@ -12,7 +12,7 @@ import (
 
 // Server struct
 type Server struct {
-	savedUsers []*pb.User // read-only after initialized
+	savedUsers []*pb.UserLoginRequest_User // read-only after initialized
 }
 
 // HealthCheck implements srv.AcreServer
@@ -22,11 +22,11 @@ func (s *Server) HealthCheck(ctx context.Context, in *pb.GetHealthCheckRequest) 
 }
 
 // UserLogin implements srv.AcreServer
-func (s *Server) UserLogin(ctx context.Context, input *pb.UserLoginRequest) (*pb.UserLoginResponse, error) {
-	// log.Printf("Received: %v", in.GetName())
+func (s *Server) UserLogin(ctx context.Context, req *pb.UserLoginRequest) (*pb.UserLoginResponse, error) {
+	logger.Log.Debug("Received:", zap.Any("input", req))
 	for _, user := range s.savedUsers {
-		if user.Email == input.Email {
-			return &pb.UserLoginResponse{Token: "Generate a token here!"}, nil
+		if user.Email == req.User.Email && user.Password == req.User.Password {
+			return &pb.UserLoginResponse{Token: "Generate a token here!", Email: req.User.Email}, nil
 		}
 	}
 	// No feature was found, return an unnamed feature
