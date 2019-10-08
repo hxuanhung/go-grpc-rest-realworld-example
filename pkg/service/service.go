@@ -34,8 +34,8 @@ func (s *Server) UserLogin(ctx context.Context, input *pb.UserLoginRequest) (*pb
 	return &pb.UserLoginResponse{Token: "NOT GOOD!"}, nil
 }
 
-// loadUsers loads users from a JSON file.
-func (s *Server) loadUsers(filePath string) {
+// LoadUsers loads users from a JSON file.
+func (s *Server) LoadUsers(filePath string) {
 	var data []byte
 	if filePath != "" {
 		var err error
@@ -46,14 +46,15 @@ func (s *Server) loadUsers(filePath string) {
 	} else {
 		data = exampleData
 	}
+	logger.Log.Debug("DB", zap.ByteString("users", data))
 	if err := json.Unmarshal(data, &s.savedUsers); err != nil {
-		logger.Log.Fatal("Failed to load default features: %v", zap.String("reason", err.Error()))
+		logger.Log.Fatal("Failed to load default users: %v", zap.String("reason", err.Error()))
 	}
 }
 
 // exampleData is a copy of testdata/user_db.json. It's to avoid
 // specifying file path with `go run`.
 var exampleData = []byte(`[{
-	"email": "hung",
-    "passwordHash": "123"
+	"email": "test@gmail.com",
+    "password": "12345678"
 }]`)

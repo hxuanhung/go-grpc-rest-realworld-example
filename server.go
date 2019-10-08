@@ -37,7 +37,9 @@ func main() {
 
 	// Goroutines: A goroutine is a lightweight thread managed by the Go runtime.
 	go func() {
-		grpc.RunServer(ctx, &service.Server{}, *port)
+		s := &service.Server{}
+		s.LoadUsers(*jsonDBFile)
+		grpc.RunServer(ctx, s, *port)
 	}()
 
 	if err := rest.RunServer(ctx, *httpPort, *port); err != nil {
