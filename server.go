@@ -35,12 +35,10 @@ func main() {
 	flag.Parse()
 	defer glog.Flush()
 
+	s := &service.Server{}
+	s.LoadUsers(*jsonDBFile)
 	// Goroutines: A goroutine is a lightweight thread managed by the Go runtime.
-	go func() {
-		s := &service.Server{}
-		s.LoadUsers(*jsonDBFile)
-		grpc.RunServer(ctx, s, *port)
-	}()
+	go grpc.RunServer(ctx, s, *port)
 
 	if err := rest.RunServer(ctx, *httpPort, *port); err != nil {
 		glog.Fatal(err)
