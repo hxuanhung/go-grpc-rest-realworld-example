@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "service.proto",
+    "title": "protection-service.proto",
     "version": "version not set"
   },
   "schemes": [
@@ -23,7 +23,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/pbGetHealthCheckResponse"
+              "$ref": "#/definitions/protoGetHealthCheckResponse"
             }
           }
         },
@@ -39,7 +39,7 @@
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/pbUserLoginResponse"
+              "$ref": "#/definitions/protoUserLoginResponse"
             }
           }
         },
@@ -49,7 +49,7 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/pbUserLoginRequest"
+              "$ref": "#/definitions/protoUserLoginRequest"
             }
           }
         ],
@@ -60,7 +60,7 @@
     }
   },
   "definitions": {
-    "pbGetHealthCheckResponse": {
+    "protoGetHealthCheckResponse": {
       "type": "object",
       "properties": {
         "status": {
@@ -70,15 +70,15 @@
       },
       "description": "Health status of services."
     },
-    "pbUserLoginRequest": {
+    "protoUserLoginRequest": {
       "type": "object",
       "properties": {
         "user": {
-          "$ref": "#/definitions/pbUserLoginRequestUser"
+          "$ref": "#/definitions/protoUserLoginRequestUser"
         }
       }
     },
-    "pbUserLoginRequestUser": {
+    "protoUserLoginRequestUser": {
       "type": "object",
       "properties": {
         "email": {
@@ -89,7 +89,7 @@
         }
       }
     },
-    "pbUserLoginResponse": {
+    "protoUserLoginResponse": {
       "type": "object",
       "properties": {
         "email": {
