@@ -3,8 +3,8 @@ settings:
     force: false
     interval: 0s
 schema:
-  - name: go-grpc-rest-realworld-example
-    path: /Users/hunghoang/go/src/github.com/hxuanhung/go-grpc-rest-realworld-example
+  - name: server
+    path: /Users/hunghoang/go/src/github.com/hxuanhung/go-grpc-rest-realworld-example/cmd/server
     commands:
       install:
         status: true

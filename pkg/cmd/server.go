@@ -1,11 +1,9 @@
-package main
+package cmd
 
 import (
 	"context"
 	"flag"
 	"fmt"
-
-	"github.com/golang/glog"
 
 	"github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/logger"
 	grpc "github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/protocol/grpc"
@@ -24,23 +22,20 @@ var (
 	logTimeFormat = flag.String("logTimeFormat", "2006-01-02T15:04:05.999999999Z07:00", "Print time format for logger e.g. 2006-01-02T15:04:05Z07:00")
 )
 
-func main() {
+// RunServer runs gRPC server and HTTP gateway
+func RunServer() error {
 	ctx := context.Background()
 	// initialize logger
 	if err := logger.Init(*logLevel, *logTimeFormat); err != nil {
-		fmt.Errorf("failed to initialize logger: %v", err)
-		return
+		return fmt.Errorf("failed to initialize logger: %v", err)
 	}
 
 	flag.Parse()
-	defer glog.Flush()
 
 	s := &service.Server{}
 	s.LoadUsers(*jsonDBFile)
 	// Goroutines: A goroutine is a lightweight thread managed by the Go runtime.
 	go grpc.RunServer(ctx, s, *port)
 
-	if err := rest.RunServer(ctx, *httpPort, *port); err != nil {
-		glog.Fatal(err)
-	}
+	return rest.RunServer(ctx, *httpPort, *port)
 }
