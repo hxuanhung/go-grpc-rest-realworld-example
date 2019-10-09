@@ -10,7 +10,7 @@ import (
 	"github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/logger"
 	grpc "github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/protocol/grpc"
 	rest "github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/protocol/rest"
-	"github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/service"
+	"github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/service/v1"
 )
 
 var (

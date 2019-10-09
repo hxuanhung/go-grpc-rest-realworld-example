@@ -5,33 +5,33 @@ import (
 	"encoding/json"
 	"io/ioutil"
 
-	"github.com/hxuanhung/go-grpc-rest-realworld-example/api/pb"
+	v1 "github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/api/v1"
 	"github.com/hxuanhung/go-grpc-rest-realworld-example/pkg/logger"
 	"go.uber.org/zap"
 )
 
 // Server struct
 type Server struct {
-	savedUsers []*pb.UserLoginRequest_User // read-only after initialized
+	savedUsers []*v1.UserLoginRequest_User // read-only after initialized
 }
 
 // HealthCheck implements srv.AcreServer
-func (s *Server) HealthCheck(ctx context.Context, in *pb.GetHealthCheckRequest) (*pb.GetHealthCheckResponse, error) {
+func (s *Server) HealthCheck(ctx context.Context, in *v1.GetHealthCheckRequest) (*v1.GetHealthCheckResponse, error) {
 	// log.Printf("Received: %v", in.GetName())
-	return &pb.GetHealthCheckResponse{Status: "Good!"}, nil
+	return &v1.GetHealthCheckResponse{Status: "Good!"}, nil
 }
 
 // UserLogin implements srv.AcreServer
-func (s *Server) UserLogin(ctx context.Context, req *pb.UserLoginRequest) (*pb.UserLoginResponse, error) {
+func (s *Server) UserLogin(ctx context.Context, req *v1.UserLoginRequest) (*v1.UserLoginResponse, error) {
 	logger.Log.Debug("Received:", zap.Any("input", req))
 	for _, user := range s.savedUsers {
 		if user.Email == req.User.Email && user.Password == req.User.Password {
-			return &pb.UserLoginResponse{Token: "Generate a token here!", Email: req.User.Email}, nil
+			return &v1.UserLoginResponse{Token: "Generate a token here!", Email: req.User.Email}, nil
 		}
 	}
 	// No feature was found, return an unnamed feature
-	// return &pb.Feature{Location: point}, nil
-	return &pb.UserLoginResponse{Token: "NOT GOOD!"}, nil
+	// return &v1.Feature{Location: point}, nil
+	return &v1.UserLoginResponse{Token: "NOT GOOD!"}, nil
 }
 
 // LoadUsers loads users from a JSON file.
