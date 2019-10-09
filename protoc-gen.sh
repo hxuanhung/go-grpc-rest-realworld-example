@@ -1,7 +1,7 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # gRPC and gRPC-gateway
-echo "Compile protobuf service definitions to Go and generate reverse-proxy..."
+echo "Generate gRPC stub in Go and generate reverse-proxy..."
 protoc -I/usr/local/include -I. \
   -I $GOPATH/src \
   -I $DIR/api/proto/v1 \
